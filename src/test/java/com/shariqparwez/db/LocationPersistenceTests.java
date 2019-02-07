@@ -2,6 +2,7 @@ package com.shariqparwez.db;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
 
 import java.util.List;
 
@@ -92,5 +93,20 @@ public class LocationPersistenceTests {
 		List<Location> locations = locationJpaRepository.findByStateOrCountry("Utah", "Utah");
 		assertNotNull(locations);
 		assertEquals("Utah", locations.get(0).getState());
+	}
+	
+
+	@Test
+	public void testJpaIsOr() {
+		List<Location> locations = locationJpaRepository.findByStateIsOrCountry("Utah", "Utah");
+		assertNotNull(locations);
+		assertEquals("Utah", locations.get(0).getState());
+	}
+	
+	@Test
+	public void testJpaNot() {
+		List<Location> locations = locationJpaRepository.findByStateNot("Utah");
+		assertNotNull(locations);
+		assertNotSame("Utah", locations.get(0).getState());
 	}
 }
