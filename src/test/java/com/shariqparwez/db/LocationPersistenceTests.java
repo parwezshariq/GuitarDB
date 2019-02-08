@@ -109,4 +109,16 @@ public class LocationPersistenceTests {
 		assertNotNull(locations);
 		assertNotSame("Utah", locations.get(0).getState());
 	}
+	
+	@Test
+	public void testFindWithNotLike() throws Exception {
+		List<Location> locs = locationJpaRepository.findByStateNotLike("New%");
+		assertEquals(46, locs.size());
+	}
+	
+	@Test
+	public void testFindStartingWith() throws Exception {
+		List<Location> locs = locationJpaRepository.findByStateStartingWith("New");
+		assertEquals(4, locs.size());
+	}
 }
