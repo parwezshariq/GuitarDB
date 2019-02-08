@@ -127,4 +127,14 @@ public class LocationPersistenceTests {
 		List<Location> locs = locationJpaRepository.findByStateIgnoreCaseStartingWith("new");
 		assertEquals(4, locs.size());
 	}
+	
+	@Test
+	public void testFindOrderBy() throws Exception {
+		List<Location> locs = locationJpaRepository.findByStateNotLikeOrderByStateAsc("New%");
+		assertEquals(46, locs.size());
+	
+		locs.forEach((location) -> {
+			System.out.println(location.getState());
+		});
+	}
 }
