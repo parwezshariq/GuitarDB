@@ -28,4 +28,6 @@ public interface LocationJpaRepository extends JpaRepository<Location, Long> {
 
 	List<Location> findByStateNotLikeOrderByStateAsc(String stateName);
 
+	Location findFirstByStateIgnoreCaseStartingWith(String stateName);
+
 }

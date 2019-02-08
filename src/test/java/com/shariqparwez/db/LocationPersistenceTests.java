@@ -137,4 +137,10 @@ public class LocationPersistenceTests {
 			System.out.println(location.getState());
 		});
 	}
+	
+	@Test
+	public void testFirst() throws Exception {
+		Location loc = locationJpaRepository.findFirstByStateIgnoreCaseStartingWith("a");
+		assertEquals("Alabama", loc.getState());
+	}
 }
