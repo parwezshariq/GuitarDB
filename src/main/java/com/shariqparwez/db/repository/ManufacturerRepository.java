@@ -60,11 +60,11 @@ public class ManufacturerRepository {
 	 * Custom finder
 	 */
 	public List<Manufacturer> getManufacturersFoundedBeforeDate(Date date) {
-		@SuppressWarnings("unchecked")
+		/*@SuppressWarnings("unchecked")
 		List<Manufacturer> mans = entityManager
 				.createQuery("select m from Manufacturer m where m.foundedDate < :date")
-				.setParameter("date", date).getResultList();
-		return mans;
+				.setParameter("date", date).getResultList();*/
+		return manufacturerJpaRepository.findByFoundedDateBefore(date);
 	}
 
 	/**
