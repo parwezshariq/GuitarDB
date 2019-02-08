@@ -121,4 +121,10 @@ public class LocationPersistenceTests {
 		List<Location> locs = locationJpaRepository.findByStateStartingWith("New");
 		assertEquals(4, locs.size());
 	}
+	
+	@Test
+	public void testFindIgnoreCaseStartingWith() throws Exception {
+		List<Location> locs = locationJpaRepository.findByStateIgnoreCaseStartingWith("new");
+		assertEquals(4, locs.size());
+	}
 }

@@ -23,5 +23,7 @@ public interface LocationJpaRepository extends JpaRepository<Location, Long> {
 	List<Location> findByStateNotLike(String stateName);
 	
 	List<Location> findByStateStartingWith(String stateName);
+	
+	List<Location> findByStateIgnoreCaseStartingWith(String stateName);
 
 }
