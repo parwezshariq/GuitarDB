@@ -22,4 +22,6 @@ public interface ModelJpaRepository extends JpaRepository<Model, Long> {
 											@Param("highest") BigDecimal highest,
 											@Param("wood") String wood);
 	
+	List<Model> findAllModelsByType(@Param("name") String name);
+	
 }
