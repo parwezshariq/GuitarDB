@@ -9,6 +9,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.shariqparwez.db.model.Model;
@@ -111,4 +115,11 @@ public class ModelRepository {
 		cq.select(qb.count(cq.from(Model.class)));
 		return entityManager.createQuery(cq).getSingleResult();
 	}
+	
+	public Page<Model> getModelsByPriceRangeAndWoodTypePage(BigDecimal lowest, BigDecimal highest, String wood) {
+		Sort sort = new Sort(Sort.Direction.ASC, "name");
+		Pageable page = new PageRequest(0, 2, sort);
+		return modelJpaRepository.queryByPriceRangeAndWoodType(lowest, highest, "%" + wood + "%", page);
+	}
+	
 }
