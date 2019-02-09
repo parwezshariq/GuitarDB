@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.shariqparwez.db.model.Model;
 
 @Repository
-public interface ModelJpaRepository extends JpaRepository<Model, Long> {
+public interface ModelJpaRepository extends JpaRepository<Model, Long>, ModelJpaRepositoryCustom {
 
 	List<Model> findByPriceGreaterThanEqualAndPriceLessThanEqual(BigDecimal low, BigDecimal high);
 	
